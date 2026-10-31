@@ -25,7 +25,11 @@ public partial class BackgroundLayer : UserControl
         };
     }
 
-    public void SetPage(string page) => LoadMedia(BackgroundSettingsService.ResolveForPage(page));
+    public void SetPage(string page)
+    {
+        Tag = page;
+        LoadMedia(BackgroundSettingsService.ResolveForPage(page));
+    }
 
     public void Refresh()
     {
