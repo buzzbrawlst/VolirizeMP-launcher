@@ -1,0 +1,11 @@
+<UserControl x:Class="VolirizeMP.Launcher.Controls.BackgroundLayer"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ IsHitTestVisible="False">
+ <Grid ClipToBounds="True">
+  <Image x:Name="StillImage" Stretch="UniformToFill" Visibility="Collapsed"/>
+  <MediaElement x:Name="Video" LoadedBehavior="Manual" UnloadedBehavior="Stop" Stretch="UniformToFill" Visibility="Collapsed" MediaEnded="Video_MediaEnded"/>
+  <Image x:Name="GifImage" Stretch="UniformToFill" Visibility="Collapsed"/>
+  <Border Background="#99070A12"/>
+ </Grid>
+</UserControl>
