@@ -2,7 +2,7 @@
  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
  <ScrollViewer VerticalScrollBarVisibility="Auto"><StackPanel Margin="12,12,12,28">
   <Border Background="#C0141928" BorderBrush="#554C5573" BorderThickness="1" CornerRadius="24" Padding="34" MinHeight="250">
-   <StackPanel VerticalAlignment="Center"><TextBlock Text="WELCOME TO" Foreground="#B5B9CB" FontSize="12" FontWeight="Bold" CharacterSpacing="180"/><TextBlock Text="VOLIRIZEMP" FontSize="42" FontWeight="ExtraBold" Margin="0,8,0,8"/><TextBlock Text="Your multiplayer hub. Everything you need, in one place." Foreground="#C2C7D5" FontSize="15"/><Button Content="Explore downloads  →" Click="Downloads_Click" HorizontalAlignment="Left" Margin="0,25,0,0" Padding="22,13" Background="#7567F8" Foreground="White" BorderThickness="0" FontWeight="Bold"/></StackPanel>
+   <StackPanel VerticalAlignment="Center"><TextBlock Text="WELCOME TO" Foreground="#B5B9CB" FontSize="12" FontWeight="Bold"/><TextBlock Text="VOLIRIZEMP" FontSize="42" FontWeight="ExtraBold" Margin="0,8,0,8"/><TextBlock Text="Your multiplayer hub. Everything you need, in one place." Foreground="#C2C7D5" FontSize="15"/><Button Content="Explore downloads  →" Click="Downloads_Click" HorizontalAlignment="Left" Margin="0,25,0,0" Padding="22,13" Background="#7567F8" Foreground="White" BorderThickness="0" FontWeight="Bold"/></StackPanel>
   </Border>
   <TextBlock Text="QUICK ACCESS" FontSize="12" FontWeight="Bold" Foreground="#AEB5C8" Margin="4,28,0,14"/>
   <UniformGrid Columns="2">
