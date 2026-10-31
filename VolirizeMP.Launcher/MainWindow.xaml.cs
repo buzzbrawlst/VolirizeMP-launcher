@@ -32,23 +32,33 @@ public partial class MainWindow : Window
         StatusDot.Fill = online ? Brushes.LightGreen : Brushes.IndianRed;
     }
 
-    private void SetSignedIn(UserProfile user)
-    {
+    private void SetSignedIn(UserProfile user) =>
         SignedInText.Text = string.IsNullOrWhiteSpace(user.GlobalName) ? user.Username : user.GlobalName;
-    }
 
     private void ShowPage(string page)
     {
-        PageTitle.Text = page switch { "home" => "Home", "news" => "News", "downloads" => "Downloads", _ => "Account" };
-        if (page == "home")
+        PageTitle.Text = page switch
         {
-            var home = new HomePage();
-            home.NavigationRequested += (_, _) => ShowPage("downloads");
-            PageHost.Content = home;
+            "home" => "Home", "news" => "News", "downloads" => "Downloads",
+            "account" => "Account", "settings" => "Settings", _ => "Home"
+        };
+        BackgroundLayer.SetPage(page);
+        switch (page)
+        {
+            case "home":
+                var home = new HomePage();
+                home.NavigationRequested += (_, _) => ShowPage("downloads");
+                PageHost.Content = home;
+                break;
+            case "news": PageHost.Content = new NewsPage(_api, _token); break;
+            case "downloads": PageHost.Content = new DownloadsPage(); break;
+            case "account": PageHost.Content = new AccountPage(_token, SignOut); break;
+            case "settings":
+                var settings = new SettingsPage();
+                settings.SettingsChanged += () => BackgroundLayer.Refresh();
+                PageHost.Content = settings;
+                break;
         }
-        else if (page == "news") PageHost.Content = new NewsPage(_api, _token);
-        else if (page == "downloads") PageHost.Content = new DownloadsPage();
-        else PageHost.Content = new AccountPage(_token, SignOut);
 
         var active = new SolidColorBrush(Color.FromRgb(39, 45, 67));
         HomeButton.Background = page == "home" ? active : Brushes.Transparent;
@@ -59,8 +69,7 @@ public partial class MainWindow : Window
 
     private void SignOut()
     {
-        SessionStore.Clear();
-        _token = null;
+        SessionStore.Clear(); _token = null;
         SignedInText.Text = "Not signed in";
         ShowPage("account");
     }
@@ -69,4 +78,5 @@ public partial class MainWindow : Window
     private void News_Click(object sender, RoutedEventArgs e) => ShowPage("news");
     private void Downloads_Click(object sender, RoutedEventArgs e) => ShowPage("downloads");
     private void Account_Click(object sender, RoutedEventArgs e) => ShowPage("account");
+    private void Settings_Click(object sender, RoutedEventArgs e) => ShowPage("settings");
 }
