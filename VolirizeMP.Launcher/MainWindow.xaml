@@ -1,0 +1,120 @@
+<Window x:Class="VolirizeMP.Launcher.MainWindow"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+ Title="VolirizeMP Launcher" Width="1440" Height="900" MinWidth="1050" MinHeight="680"
+ WindowStartupLocation="CenterScreen" Background="#0B0D13">
+ <Window.Resources>
+  <Style x:Key="NavButton" TargetType="Button">
+   <Setter Property="Foreground" Value="#B9BDCC"/><Setter Property="Background" Value="Transparent"/>
+   <Setter Property="BorderThickness" Value="0"/><Setter Property="Height" Value="46"/>
+   <Setter Property="HorizontalContentAlignment" Value="Left"/><Setter Property="Padding" Value="18,0"/>
+   <Setter Property="FontSize" Value="13"/><Setter Property="FontWeight" Value="SemiBold"/>
+   <Setter Property="Cursor" Value="Hand"/>
+   <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Button">
+    <Border x:Name="B" Background="{TemplateBinding Background}" CornerRadius="10">
+     <ContentPresenter VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
+    </Border>
+    <ControlTemplate.Triggers>
+     <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="B" Property="Background" Value="#202633"/></Trigger>
+     <Trigger Property="IsPressed" Value="True"><Setter TargetName="B" Property="Background" Value="#30344D"/></Trigger>
+    </ControlTemplate.Triggers>
+   </ControlTemplate></Setter.Value></Setter>
+  </Style>
+ </Window.Resources>
+ <Grid>
+  <Grid.ColumnDefinitions><ColumnDefinition Width="238"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+  <Border Grid.Column="0" Background="#10131C" BorderBrush="#252A38" BorderThickness="0,0,1,0">
+   <DockPanel Margin="18">
+    <StackPanel DockPanel.Dock="Top">
+     <StackPanel Orientation="Horizontal" Margin="8,12,0,42">
+      <Border Width="38" Height="38" CornerRadius="12" Background="#7567F8">
+       <TextBlock Text="V" Foreground="White" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+      </Border>
+      <StackPanel Margin="11,0,0,0" VerticalAlignment="Center">
+       <TextBlock Text="VOLIRIZEMP" Foreground="White" FontSize="16" FontWeight="Bold"/>
+       <TextBlock Text="MULTIPLAYER LAUNCHER" Foreground="#85899B" FontSize="8" FontWeight="Bold"/>
+      </StackPanel>
+     </StackPanel>
+     <TextBlock Text="LIBRARY" Foreground="#666C7E" FontSize="10" FontWeight="Bold" Margin="10,0,0,10"/>
+     <Button x:Name="HomeButton" Content="⌂   Home" Style="{StaticResource NavButton}" Click="Home_Click"/>
+     <Button x:Name="NewsButton" Content="▤   News" Style="{StaticResource NavButton}" Click="News_Click"/>
+     <Button x:Name="DownloadsButton" Content="⇩   Downloads" Style="{StaticResource NavButton}" Click="Downloads_Click"/>
+     <TextBlock Text="YOUR ACCOUNT" Foreground="#666C7E" FontSize="10" FontWeight="Bold" Margin="10,30,0,10"/>
+     <Button x:Name="AccountButton" Content="◉   Account" Style="{StaticResource NavButton}" Click="Account_Click"/>
+    </StackPanel>
+    <StackPanel DockPanel.Dock="Bottom" Margin="4,0,4,8">
+     <Border Background="#191D29" CornerRadius="12" Padding="12" Margin="0,0,0,12">
+      <StackPanel>
+       <TextBlock Text="SERVICE STATUS" Foreground="#777D90" FontSize="9" FontWeight="Bold"/>
+       <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+        <Ellipse x:Name="StatusDot" Width="8" Height="8" Fill="#E5A84B" VerticalAlignment="Center"/>
+        <TextBlock x:Name="StatusText" Text="Not configured" Foreground="#D5D8E2" FontSize="11" Margin="8,0,0,0"/>
+       </StackPanel>
+      </StackPanel>
+     </Border>
+     <TextBlock Text="VOLIRIZEMP  •  v1.0.0" Foreground="#666C7E" FontSize="9" Margin="8,0,0,0"/>
+    </StackPanel>
+   </DockPanel>
+  </Border>
+  <Grid Grid.Column="1" Margin="28">
+   <Grid.RowDefinitions><RowDefinition Height="58"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+   <Grid Grid.Row="0">
+    <TextBlock x:Name="PageTitle" Text="Home" Foreground="White" FontSize="23" FontWeight="Bold" VerticalAlignment="Center"/>
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+     <TextBlock x:Name="SignedInText" Text="Not signed in" Foreground="#9296A8" VerticalAlignment="Center" Margin="0,0,16,0"/>
+     <Button Content="Discord" Click="Discord_Click" Background="#5865F2" Foreground="White" BorderThickness="0" Padding="18,9" Cursor="Hand"/>
+    </StackPanel>
+   </Grid>
+   <Grid Grid.Row="1">
+    <Grid x:Name="HomeView">
+     <Grid.RowDefinitions><RowDefinition Height="*"/><RowDefinition Height="150"/></Grid.RowDefinitions>
+     <Border CornerRadius="22" ClipToBounds="True" Background="#1B2030">
+      <Grid>
+       <Rectangle Fill="#202B4B"/>
+       <Rectangle>
+        <Rectangle.Fill><LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+         <GradientStop Color="#392E76" Offset="0"/><GradientStop Color="#151B2D" Offset="1"/>
+        </LinearGradientBrush></Rectangle.Fill>
+       </Rectangle>
+       <StackPanel VerticalAlignment="Bottom" Margin="42,0,0,48">
+        <TextBlock Text="VOLIRIZEMP MULTIPLAYER" Foreground="#B8B1FF" FontSize="11" FontWeight="Bold"/>
+        <TextBlock Text="Your next session starts here." Foreground="White" FontSize="38" FontWeight="Bold" Margin="0,10,0,8"/>
+        <TextBlock Text="A clean starter launcher ready for your game services and backend." Foreground="#C3C6D3" FontSize="14"/>
+        <Button Content="VIEW DOWNLOADS" Width="170" Height="42" HorizontalAlignment="Left" Margin="0,24,0,0"
+                Background="#7567F8" Foreground="White" BorderThickness="0" FontWeight="Bold" Cursor="Hand" Click="Downloads_Click"/>
+       </StackPanel>
+      </Grid>
+     </Border>
+     <Grid Grid.Row="1" Margin="0,18,0,0">
+      <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+      <Border Background="#151923" BorderBrush="#262C3A" BorderThickness="1" CornerRadius="16" Padding="20" Margin="0,0,9,0">
+       <StackPanel><TextBlock Text="LATEST NEWS" Foreground="#8C91A3" FontSize="10" FontWeight="Bold"/>
+        <TextBlock x:Name="LatestNewsTitle" Text="News will appear here" Foreground="White" FontSize="16" FontWeight="SemiBold" Margin="0,12,0,0"/>
+        <TextBlock x:Name="LatestNewsDescription" Text="Connect your backend to load announcements." Foreground="#9CA1B2" TextWrapping="Wrap" FontSize="12" Margin="0,6,0,0"/>
+       </StackPanel>
+      </Border>
+      <Border Grid.Column="1" Background="#151923" BorderBrush="#262C3A" BorderThickness="1" CornerRadius="16" Padding="20" Margin="9,0,0,0">
+       <StackPanel><TextBlock Text="ACCOUNT" Foreground="#8C91A3" FontSize="10" FontWeight="Bold"/>
+        <TextBlock x:Name="HomeUsername" Text="Guest" Foreground="White" FontSize="16" FontWeight="SemiBold" Margin="0,12,0,0"/>
+        <TextBlock Text="Connect your authentication provider in Config.cs." Foreground="#9CA1B2" TextWrapping="Wrap" FontSize="12" Margin="0,6,0,0"/>
+       </StackPanel>
+      </Border>
+     </Grid>
+    </Grid>
+    <wv2:WebView2 x:Name="PageBrowser" Visibility="Collapsed"/>
+    <Grid x:Name="AccountView" Visibility="Collapsed">
+     <Border Background="#151923" BorderBrush="#262C3A" BorderThickness="1" CornerRadius="18" Padding="28" Width="620" Height="270" HorizontalAlignment="Left" VerticalAlignment="Top">
+      <StackPanel>
+       <TextBlock Text="Your account" Foreground="White" FontSize="25" FontWeight="Bold"/>
+       <TextBlock x:Name="AccountUsername" Text="Guest" Foreground="#B8B1FF" FontSize="18" Margin="0,18,0,0"/>
+       <TextBlock x:Name="AccountId" Text="Not connected" Foreground="#9296A8" FontSize="12" Margin="0,8,0,0"/>
+       <Button Content="Sign out" Width="110" HorizontalAlignment="Left" Margin="0,28,0,0" Padding="12,9" Click="SignOut_Click"/>
+       <TextBlock Text="Authentication is intentionally provider-neutral in this starter. Connect your own OAuth flow and backend endpoints." Foreground="#777D90" TextWrapping="Wrap" FontSize="11" Margin="0,18,0,0"/>
+      </StackPanel>
+     </Border>
+    </Grid>
+   </Grid>
+  </Grid>
+ </Grid>
+</Window>
