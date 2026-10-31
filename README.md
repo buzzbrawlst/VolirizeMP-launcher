@@ -1,39 +1,34 @@
 # VolirizeMP Launcher
 
-A starter Windows launcher built with **.NET 8 WPF** and **WebView2**. Open `VolirizeMP-launcher.sln` in Visual Studio 2022.
+A Windows desktop launcher starter built with **.NET 8 WPF**. Open `VolirizeMP-launcher.sln` in Visual Studio 2022.
 
 ## Included
-- WPF desktop shell with Home, News, Downloads and Account navigation
-- HTML pages in `VolirizeMP.Launcher/WebPages/` rendered inside the launcher
-- Configurable backend URL/IP and port
-- Central `ApiService` for health, account and news requests
+- Spacious dark launcher layout
+- Separate native WPF XAML pages for Home, News, Downloads, Account and Settings
+- Customisable backgrounds: PNG/JPG/BMP, animated GIF, and MP4/WMV/MOV video
+- Global backgrounds or individual backgrounds for each page
+- Adjustable background blur saved between launches
+- Background media copied into the current Windows user's AppData folder
+- Backend health, account and news API service
 - Windows-user encrypted session token storage helper
-- Discord invite shortcut and responsive dark UI
 
 ## Requirements
 - Windows 10/11
 - Visual Studio 2022 with the **.NET desktop development** workload
 - .NET 8 SDK
-- Microsoft Edge WebView2 Runtime
 
-## Run it
-1. Clone this repository.
-2. Open `VolirizeMP-launcher.sln` in Visual Studio.
-3. Restore NuGet packages.
-4. Open `VolirizeMP.Launcher/Config.cs` and set `ApiBaseUrl` and your Discord invite.
-5. Set the same API URL in `WebPages/news.html` as `API_BASE_URL`.
-6. Build and run.
+## Run
+1. Open `VolirizeMP-launcher.sln` in Visual Studio.
+2. Restore NuGet packages.
+3. Set `ApiBaseUrl` in `VolirizeMP.Launcher/Config.cs`.
+4. Build and run.
+
+## Background settings
+Open **Settings** in the launcher. Choose whether media applies globally or to one page, select a PNG/JPG/BMP, animated GIF or supported video, adjust blur, then save. Settings and imported media are stored locally under `%AppData%/VolirizeMP`. A page-specific background takes priority over the global background.
 
 ## Backend contract
-The starter expects:
 - `GET /` — health check
 - `GET /news` — JSON array containing `title`, `description`, `date`, `category`, and optional `image`
-- `GET /auth/me` — authenticated user profile if a session token exists
+- `GET /auth/me` — authenticated user profile
 
-Change `Services/ApiService.cs` to match your backend's actual routes and response shapes. Discord OAuth is not implemented in this starter yet; the Account page is ready to connect to your chosen OAuth flow. `SessionStore` is secure token storage, not an authentication system by itself.
-
-## IP-based backend
-Set `Config.ApiBaseUrl` to your API origin including port, e.g. `http://192.0.2.10:3000` for local testing. For public production use HTTPS, validate tokens server-side, and never put bot tokens, admin secrets, or private keys in the launcher or HTML.
-
-## HTML pages
-Edit `WebPages/news.html` and `WebPages/downloads.html` directly. The project copies these files to the build output, and WebView2 opens them inside the launcher. News fetches the public `/news` endpoint from the configured API URL.
+Discord OAuth is not implemented in this starter yet. The Account page is a separate XAML page ready to connect to your OAuth flow. Never put bot tokens or admin secrets in the launcher.
