@@ -1,0 +1,21 @@
+<UserControl x:Class="VolirizeMP.Launcher.Pages.SettingsPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+ <ScrollViewer Margin="12"><StackPanel>
+  <TextBlock Text="PERSONALISE" Foreground="#A7AEC2" FontSize="11" FontWeight="Bold"/><TextBlock Text="Settings" FontSize="29" FontWeight="Bold" Margin="0,5,0,5"/><TextBlock Text="Make the launcher feel like yours." Foreground="#B7BDCC" Margin="0,0,0,22"/>
+  <Border Background="#C0181E2D" BorderBrush="#55434B63" BorderThickness="1" CornerRadius="18" Padding="24">
+   <StackPanel>
+    <TextBlock Text="BACKGROUND MEDIA" FontSize="17" FontWeight="Bold"/><TextBlock Text="Use an image, animated GIF or video as your launcher background." Foreground="#B7BDCC" Margin="0,6,0,18" TextWrapping="Wrap"/>
+    <TextBlock Text="Apply background to" Foreground="#AEB5C8" FontSize="12" FontWeight="SemiBold"/>
+    <ComboBox x:Name="ScopeBox" SelectedIndex="0" SelectionChanged="ScopeBox_SelectionChanged" Height="38" Margin="0,7,0,17" Background="#202638" Foreground="White">
+     <ComboBoxItem Content="Every page (global)"/><ComboBoxItem Content="Home page"/><ComboBoxItem Content="News page"/><ComboBoxItem Content="Downloads page"/><ComboBoxItem Content="Account page"/><ComboBoxItem Content="Settings page"/>
+    </ComboBox>
+    <Border Background="#99101520" CornerRadius="12" Padding="16"><StackPanel><TextBlock x:Name="SelectedFileText" Text="No media selected for this scope" Foreground="#C2C8D5" TextWrapping="Wrap"/><Button Content="Choose media…" Click="ChooseMedia_Click" HorizontalAlignment="Left" Padding="18,10" Margin="0,13,0,0" Background="#7567F8" Foreground="White" BorderThickness="0" FontWeight="Bold"/></StackPanel></Border>
+    <TextBlock Text="Background blur" Foreground="#AEB5C8" FontSize="12" FontWeight="SemiBold" Margin="0,22,0,4"/>
+    <DockPanel><TextBlock x:Name="BlurValue" DockPanel.Dock="Right" Text="8" Foreground="White" VerticalAlignment="Center"/><Slider x:Name="BlurSlider" Minimum="0" Maximum="30" Value="8" TickFrequency="1" IsSnapToTickEnabled="True" ValueChanged="BlurSlider_ValueChanged"/></DockPanel>
+    <TextBlock Text="0 = sharp · 30 = heavily blurred" Foreground="#8992A8" FontSize="11" Margin="0,3,0,0"/>
+    <Button Content="Save background settings" Click="Save_Click" HorizontalAlignment="Left" Padding="20,12" Margin="0,23,0,0" Background="#7567F8" Foreground="White" BorderThickness="0" FontWeight="Bold"/>
+    <TextBlock x:Name="SaveStatus" Foreground="#A9E6C1" Margin="0,12,0,0" TextWrapping="Wrap"/>
+   </StackPanel>
+  </Border>
+  <TextBlock Text="Formats: PNG, JPG, BMP, GIF, MP4, WMV and MOV. Your media is copied into your local VolirizeMP app-data folder." Foreground="#929AAF" FontSize="11" TextWrapping="Wrap" Margin="4,15,4,0"/>
+ </StackPanel></ScrollViewer>
+</UserControl>
