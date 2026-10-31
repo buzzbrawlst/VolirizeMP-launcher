@@ -42,7 +42,6 @@ public partial class MainWindow : Window
             "home" => "Home", "news" => "News", "downloads" => "Downloads",
             "account" => "Account", "settings" => "Settings", _ => "Home"
         };
-        BackgroundLayer.SetPage(page);
         switch (page)
         {
             case "home":
@@ -55,7 +54,6 @@ public partial class MainWindow : Window
             case "account": PageHost.Content = new AccountPage(_token, SignOut); break;
             case "settings":
                 var settings = new SettingsPage();
-                settings.SettingsChanged += () => BackgroundLayer.Refresh();
                 PageHost.Content = settings;
                 break;
         }
@@ -79,4 +77,6 @@ public partial class MainWindow : Window
     private void Downloads_Click(object sender, RoutedEventArgs e) => ShowPage("downloads");
     private void Account_Click(object sender, RoutedEventArgs e) => ShowPage("account");
     private void Settings_Click(object sender, RoutedEventArgs e) => ShowPage("settings");
+    private void Close_Click(object sender, RoutedEventArgs e) => Close();
+    private void Launch_Click(object sender, RoutedEventArgs e) => ShowPage("downloads");
 }
